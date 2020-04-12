@@ -1,0 +1,16 @@
+language: go
+
+go:
+  - "1.13.x"
+  - "1.14.x"
+  - tip
+
+before_install:
+  - go get github.com/facebookincubator/contest/cmds/clients/contestcli-http
+  - go install github.com/facebookincubator/contest/cmds/clients/contestcli-http
+
+script:
+  - contestcli-http -v
+
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
